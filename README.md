@@ -1,5 +1,9 @@
 # timestamp-dapp
 
+This decentralized app let's you upload a file to IPFS and afterwards store the unique hash of this file on the Ethereum Blockchain. 
+
+![](./demo/ui-demo.gif)
+
 ##Installation
 ###IPFS must be installed and running
 **IPFS** installation guide can be found [here](https://docs.ipfs.io/introduction/install/).
