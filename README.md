@@ -49,3 +49,11 @@ or if you have already migrated before
 migrate --reset
 ```
 
+### Run client application
+
+```
+cd client
+npm install
+npm start
+```
+
