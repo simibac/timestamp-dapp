@@ -128,7 +128,6 @@ class App extends Component {
         const response = await tsContract.methods.verify(hash).call();
         // Update state with the result.
         this.setState({storageValue: response, storedOnETH:true});
-
     };
 
     getStepContent(step) {
