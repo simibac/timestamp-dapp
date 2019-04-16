@@ -1,5 +1,7 @@
 import React, {Component} from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json";
+//import SimpleStorageContract from "./contracts/SimpleStorage.json";
+import TimeStamperContract from "./contracts/TimeStamper.json";
+
 import getWeb3 from "./utils/getWeb3";
 import SimpleAppBar from "./components/SimpleAppBar.js"
 import FileUpload from "./components/FileUpload.js"
@@ -67,15 +69,24 @@ class App extends Component {
 
             // Get the contract instance.
             const networkId = await web3.eth.net.getId();
-            const deployedNetwork = SimpleStorageContract.networks[networkId];
-            const instance = new web3.eth.Contract(
-                SimpleStorageContract.abi,
+            //const deployedNetwork = SimpleStorageContract.networks[networkId];
+            //const instance = new web3.eth.Contract(
+            //    SimpleStorageContract.abi,
+            //    deployedNetwork && deployedNetwork.address,
+            //);
+            const deployedNetwork = TimeStamperContract.networks[networkId];
+            const timeStamperContract = new web3.eth.Contract(
+                TimeStamperContract.abi,
                 deployedNetwork && deployedNetwork.address,
-            );
-
+            )
             // Set web3, accounts, and contract to the state, and then proceed with an
             // example of interacting with the contract's methods.
-            this.setState({web3, accounts, contract: instance});
+            this.setState({
+                web3, 
+                accounts, 
+                //contract: instance, 
+                tsContract: timeStamperContract
+            });
         } catch (error) {
             // Catch any errors for any of the above operations.
             alert(
@@ -107,14 +118,14 @@ class App extends Component {
 
 
     runExample = async (hash) => {
-        const {accounts, contract} = this.state;
+        const {accounts, contract, tsContract} = this.state;
 
         // Stores a given value
-        await contract.methods.set(hash).send({from: accounts[0]});
-
+        //await contract.methods.set(hash).send({from: accounts[0]});
+        await tsContract.methods.timestamp(hash).send({from: accounts[0]});
         // Get the value from the contract to prove it worked.
-        const response = await contract.methods.get().call();
-
+        //const response = await contract.methods.get().call();
+        const response = await tsContract.methods.verify(hash).call();
         // Update state with the result.
         this.setState({storageValue: response, storedOnETH:true});
 
