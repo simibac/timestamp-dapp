@@ -1,59 +1,110 @@
-# timestamp-dapp
+# IPStamp
 
-This decentralized app let's you upload a file to IPFS and afterwards store the unique hash of this file on the Ethereum Blockchain. 
+Application for timestamping digital files. This prototype was developed as part of the Seminar "Blockchain Technology – An Introduction for Business Managers" at the University of Zurich.
 
-![](./demo/ui-demo.gif)
+This project was bootstrapped with [Truffle]([https://github.com/facebook/create-react-app](https://github.com/trufflesuite/truffle/)).
 
-## Installation
-
-### IPFS must be installed and running
-
-**IPFS** installation guide can be found [here](https://docs.ipfs.io/introduction/install/).
-
-Run daemon with the following command:
-
-```
-ipfs daemon
+```bash
+npm install -g truffle
+truffle unbox react
 ```
 
-### Install ganache-cli
-**ganache-cli** installation guide can be found [here](https://github.com/trufflesuite/ganache-cli).
+## Prerequisites
 
-Run a local ethereum instance with the following command:
+- [Git](https://git-scm.com/) command line interface
+- [Node.js](https://nodejs.org/) command line interface
+- [Metamask Extension](https://metamask.io/) for your browser (including wallet)
+- [Ganache-CLI](https://github.com/trufflesuite/ganache-cli) to spin up a blockchain with instant mining
 
-```
-ganache-cli
-```
+> We **don't** use [Ganache](https://truffleframework.com/ganache) at the moment, as it fails somehow. Everything works though with Ganache-CLI. If at some point we switch back, the README should be updated.
 
-This will create 10 ethereum accounts which can be imported to Metamask (just copy-paste a private key to the import window in Metamask). Make sure your Metamask is connected to ```http://127.0.0.1:8545/```.
+## Setup
 
+_onetime setup_
 
-### Truffe smart contract compilation and deployment
-```
-truffle develop
-```
-Then compile the contract
+### Clone the Project
 
-```
-compile
-```
-and 
+```bash
+git clone https://github.com/simibac/timestamp-dapp.git
 
-```
-migrate
+# or
+
+git clone git@github.com:simibac/timestamp-dapp.git
 ```
 
-or if you have already migrated before
+### Set up Client
 
-```
-migrate --reset
-```
-
-### Run client application
-
-```
-cd client
+```bash
+cd timestamp-dapp/client/
 npm install
-npm start
+```
+_Detailed information can be found here: [README](./client/README.md)._
+
+### Install Truffle
+
+```bash
+npm install -g truffle
+
+# or
+
+sudo npm install -g truffle
 ```
 
+### Install Ganache-CLI
+Install with `@beta` to get the latest updates which fixes a bug that caused wrong gas estimations ([more details](https://github.com/trufflesuite/ganache-cli/releases/tag/v6.4.2-beta.0)).
+
+```bash
+npm install -g ganache-cli@beta
+
+# or
+
+sudo npm install -g ganache-cli@beta
+```
+
+### Setup Metamask
+
+1. Start a local blockchain with `ganache-cli` in a terminal - which will most likely be running on: `http://127.0.0.1:8545`).
+2. Open `Metamask` in your browser and login with your wallet.
+3. Click on the network dropdown and select _Custom RPC_.
+4. Scroll down and enter the copied `RPC Server` of `ganache-cli` into the _New RPC URL_ field.
+5. Hit _Save_.
+6. Switch to your `ganache-cli` an copy one of the private keys.
+7. Back in `Metamask`, click on the _colored circle_ on the top right and select _Import Account_.
+8. Paste the private key from `ganache-cli` and hit _Import_. You should now be logged in with an Account from the `ganache-cli` network with a balance of _100 ETH_.
+
+## Run Environment
+
+_everytime to run the environment_
+
+1. Pull the latest commits:
+   ```bash
+   # Terminal Tab #1
+   cd /path/to/timestamp-dapp
+   git pull
+   ```
+2. Start local blockchain with `ganache-cli`.
+3. Compile the `Smart Contracts`:
+   ```bash
+   # Terminal Tab #1
+   truffle compile
+   ```
+4. Deploy the `Smart Contracts` on the `Ganache` network:
+   ```bash
+   # Terminal Tab #1
+   truffle migrate --reset
+   ```
+4. Start the `Truffle` console:
+   ```bash
+   # Terminal Tab #1
+   truffle console
+   ```
+5. Start the `React` client:
+   ```bash
+   # Terminal Tab #2
+   cd /path/to/timestamp-dapp/client
+   npm install
+   npm start
+   ```
+6. `localhost:3000` should be opened automatically in your browser
+
+:warning: Make sure your Metamask is connected to the correct network! :warning:
