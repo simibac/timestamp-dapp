@@ -999,10 +999,16 @@
       "links": {},
       "address": "0x81996720AcA7eF382e8B1603101152e09A3465D7",
       "transactionHash": "0x418748d9e35ca7ca9cae1c218fd71416441db268644aaaeec6aa8f919a99bf5e"
+    },
+    "1556377135212": {
+      "events": {},
+      "links": {},
+      "address": "0xEDcE58970c474c149194C17Fd935b261f49be0B0",
+      "transactionHash": "0x625636cc4ba1445d06735bde3106a946dfc395f2595dd807a2be8af496699ac7"
     }
   },
   "schemaVersion": "3.0.3",
-  "updatedAt": "2019-04-16T15:18:49.463Z",
+  "updatedAt": "2019-04-27T15:00:05.846Z",
   "devdoc": {
     "methods": {}
   },
